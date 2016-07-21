@@ -1,13 +1,13 @@
 import java.awt.*;
 
 /**
- * Created by clotw on 7/21/2016.
+ * Aidan Clotworthy, 7/21/2016.
  */
 public class PongSlider {
-    private static final int WIDTH = 20;
+    private static final int WIDTH = 20; //test
     private static final int HEIGHT = 50;
-    private static int xPos;
-    private static int yPos;
+    private int xPos;
+    private int yPos;
 
     public PongSlider(int xPos, int yPos, Panel p){
         this.xPos = xPos;
