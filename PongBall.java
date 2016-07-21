@@ -1,7 +1,7 @@
 import java.awt.*;
 
 /**
- * Created by clotw on 7/21/2016.
+ * Aidan Clotworthy, 7/21/2016.
  */
 public class PongBall {
     private static final int WIDTH = 10;
