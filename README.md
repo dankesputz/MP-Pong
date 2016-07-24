@@ -1,2 +1,2 @@
 # MP-Pong
-Classic Pong to be played by two users via direct connection over internet
+Classic Pong to be played by two users via P2P direct connection over internet
