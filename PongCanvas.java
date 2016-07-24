@@ -49,7 +49,7 @@ public class PongCanvas extends Canvas{
             }
 
             @Override
-            //TODO: prevent sliders from running off the window
+            //TODO: prevent sliders from running off the window vertically
             public void keyPressed(KeyEvent e) {
                 int keyCode = e.getKeyCode();
 
