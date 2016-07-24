@@ -6,13 +6,22 @@ import java.awt.*;
 class PongSlider {
     private static final int WIDTH = 20;
     private static final int HEIGHT = 100;
+    private static final int VMODIFIER = 12;
+    private static int vY = 0;
     private final int xPos;
     private int yPos;
-    private int vY;
+
+    void setyPos(int yPos) {
+        this.yPos = yPos;
+    }
 
     PongSlider(int xPos, int yPos) {
         this.xPos = xPos;
         this.yPos = yPos;
+    }
+
+    static int getVMODIFIER() {
+        return VMODIFIER;
     }
 
     static int getWIDTH() {
@@ -31,13 +40,7 @@ class PongSlider {
         return yPos;
     }
 
-    void setvY(int vY) {
-        this.vY = vY;
-    }
-
-    void updateGraphics(long change, Graphics2D slider) {
-        this.yPos += this.vY * change;
-
+    void updateGraphics(Graphics2D slider) {
         slider.setColor(Color.BLACK);
         slider.fillRect(this.xPos, this.yPos, WIDTH, HEIGHT);
     }

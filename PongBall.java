@@ -6,7 +6,7 @@ import java.awt.*;
 class PongBall {
     private static final int DIAMETER = 25;
     private int xPos, yPos;
-    private int xV, yV;
+    private long xV, yV;
 
     PongBall(int xPos, int yPos) {
         this.xPos = xPos;
@@ -24,10 +24,10 @@ class PongBall {
 
 
     int updateGraphics(long change, Graphics2D ball, PongCanvas canvas, PongSlider p1, PongSlider p2) {
-        int nextTop = this.yPos + this.yV;
-        int nextBottom = this.yPos + DIAMETER + this.yV;
-        int nextLeft = this.xPos + this.xV;
-        int nextRight = this.xPos + DIAMETER + this.xV;
+        int nextTop = (int)(this.yPos + this.yV);
+        int nextBottom = (int)(this.yPos + DIAMETER + this.yV);
+        int nextLeft = (int)(this.xPos + this.xV);
+        int nextRight = (int)(this.xPos + DIAMETER + this.xV);
 
         int p1_right = p1.getxPos() + PongSlider.getWIDTH();
         int p1_top = p1.getyPos();
@@ -56,8 +56,8 @@ class PongBall {
             }
         }
 
-        this.yPos += this.yV * change;
-        this.xPos += this.xV * change;
+        this.yPos += (int)(this.yV * 0.5 * change);
+        this.xPos += (int)(this.xV * 0.5 * change);
 
         ball.setColor(Color.BLACK);
         ball.fillOval(this.xPos, this.yPos, DIAMETER, DIAMETER);
