@@ -3,28 +3,64 @@ import java.awt.*;
 /**
  * Aidan Clotworthy, 7/21/2016.
  */
-public class PongBall {
-    private static final int WIDTH = 10;
-    private static final int HEIGHT = 10;
-    private int xPos;
-    private int yPos;
+class PongBall {
+    private static final int DIAMETER = 25;
+    private int xPos, yPos;
+    private int xV, yV;
 
-    public PongBall(int xPos, int yPos, Panel p) {
+    PongBall(int xPos, int yPos) {
         this.xPos = xPos;
         this.yPos = yPos;
+        this.xV = -1;
+        this.yV = 1;
     }
 
-    public void updateGraphics() {
-    }
-
-    public boolean hasCollided() {
-        return false;
-    }
-
-    public void fill(){
-
+    private void reset(PongCanvas canvas) {
+        this.xPos = canvas.getWidth() / 2;
+        this.yPos = (canvas.getHeight() / 2) + 20;
+        this.xV = -1;
+        this.yV = 1;
     }
 
 
+    int updateGraphics(long change, Graphics2D ball, PongCanvas canvas, PongSlider p1, PongSlider p2) {
+        int nextTop = this.yPos + this.yV;
+        int nextBottom = this.yPos + DIAMETER + this.yV;
+        int nextLeft = this.xPos + this.xV;
+        int nextRight = this.xPos + DIAMETER + this.xV;
 
+        int p1_right = p1.getxPos() + PongSlider.getWIDTH();
+        int p1_top = p1.getyPos();
+        int p1_bottom = p1.getyPos() + PongSlider.getHEIGHT();
+
+        int p2_left = p2.getxPos();
+        int p2_top = p2.getyPos();
+        int p2_bottom = p2.getyPos() + PongSlider.getHEIGHT();
+
+        if (nextTop < 0 || nextBottom > canvas.getHeight())
+            this.yV *= -1;
+        if (nextLeft < p1_right) {
+            if (nextTop > p1_bottom || nextBottom < p1_top) {
+                reset(canvas);
+                return 2;
+            } else {
+                this.xV *= -1;
+            }
+        }
+        if (nextRight > p2_left) {
+            if (nextTop > p2_bottom || nextBottom < p2_top) {
+                reset(canvas);
+                return 1;
+            } else {
+                this.xV *= -1;
+            }
+        }
+
+        this.yPos += this.yV * change;
+        this.xPos += this.xV * change;
+
+        ball.setColor(Color.BLACK);
+        ball.fillOval(this.xPos, this.yPos, DIAMETER, DIAMETER);
+        return 0;
+    }
 }

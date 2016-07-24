@@ -3,25 +3,42 @@ import java.awt.*;
 /**
  * Aidan Clotworthy, 7/21/2016.
  */
-public class PongSlider {
-    private static final int WIDTH = 20; //test
-    private static final int HEIGHT = 50;
-    private int xPos;
+class PongSlider {
+    private static final int WIDTH = 20;
+    private static final int HEIGHT = 100;
+    private final int xPos;
     private int yPos;
+    private int vY;
 
-    public PongSlider(int xPos, int yPos, Panel p){
+    PongSlider(int xPos, int yPos) {
         this.xPos = xPos;
         this.yPos = yPos;
     }
 
-    public void updatewGraphics(){}
+    static int getWIDTH() {
+        return WIDTH;
+    }
 
-    public boolean keyPress(){return false;}
+    static int getHEIGHT() {
+        return HEIGHT;
+    }
 
-    public boolean keyRelease(){return false;}
+    int getxPos() {
+        return xPos;
+    }
 
-    public void fill(){}
+    int getyPos() {
+        return yPos;
+    }
 
+    void setvY(int vY) {
+        this.vY = vY;
+    }
 
+    void updateGraphics(long change, Graphics2D slider) {
+        this.yPos += this.vY * change;
 
+        slider.setColor(Color.BLACK);
+        slider.fillRect(this.xPos, this.yPos, WIDTH, HEIGHT);
+    }
 }
